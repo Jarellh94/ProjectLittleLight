@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 playerToMouse = floorHit.point - transform.position;
             playerToMouse.y = 0;
+            playerToMouse.z -= 1;
 
             Quaternion newRot = Quaternion.LookRotation(playerToMouse); //Makes playerToMouse the forward direction of the player.
             transform.rotation = newRot;
