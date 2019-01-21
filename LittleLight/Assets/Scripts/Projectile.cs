@@ -5,13 +5,14 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float projSpeed = 10f;
-    int damage = 1;
+    public float destroyTime = 2f;
+    public int damage = 1;
     Vector3 direction;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Destroy(gameObject, destroyTime);
     }
 
     // Update is called once per frame
@@ -24,5 +25,18 @@ public class Projectile : MonoBehaviour
     {
         damage = newDamage;
         direction = newDirection;
+    }
+
+    void OnTriggerEnter(Collider oth)
+    {
+        if(oth.CompareTag("Enemy"))
+        {
+            Debug.Log("Dealing: " + damage);
+            oth.GetComponent<EnemyHealth>().Damage(damage);
+        }
+        
+        if (!oth.CompareTag("Player"))
+            Destroy(gameObject);
+        
     }
 }
