@@ -27,8 +27,10 @@ public class Projectile : MonoBehaviour
         direction = newDirection;
     }
 
-    void OnTriggerEnter(Collider oth)
+    void OnCollisionEnter(Collision col)
     {
+        GameObject oth = col.gameObject;
+
         if(oth.CompareTag("Enemy"))
         {
             Debug.Log("Dealing: " + damage);

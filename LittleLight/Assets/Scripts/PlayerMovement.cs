@@ -6,15 +6,12 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
 
-    int floorMask;
-    float camRayLength = 100f;
-    Camera cam;
+    PointerScript pointerInfo;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        floorMask = LayerMask.GetMask("Floor");
-        cam = Camera.main;
+        pointerInfo = FindObjectOfType<PointerScript>();
     }
 
     // Update is called once per frame
@@ -29,19 +26,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Turn()
     {
-        Ray camRay = cam.ScreenPointToRay(Input.mousePosition);
+        Vector3 playerToMouse = pointerInfo.GetPositionOfMouse();
 
-        RaycastHit floorHit;
+        playerToMouse.y = transform.position.y;
 
-        if(Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
-        {
-            Vector3 playerToMouse = floorHit.point - transform.position;
-            playerToMouse.y = 0;
-            playerToMouse.z -= 1;
-
-            Quaternion newRot = Quaternion.LookRotation(playerToMouse); //Makes playerToMouse the forward direction of the player.
-            transform.rotation = newRot;
-        }
+        transform.LookAt(playerToMouse);
     }
 
     void Move(float horizontal, float vertical)
