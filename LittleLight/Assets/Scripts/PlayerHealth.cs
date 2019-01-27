@@ -22,5 +22,13 @@ public class PlayerHealth : MonoBehaviour
     public void Damage(int damage)
     {
         health -= damage;
+
+        if (health <= 0)
+            Die();
+    }
+
+    public void Die()
+    {
+        health = maxHealth;
     }
 }

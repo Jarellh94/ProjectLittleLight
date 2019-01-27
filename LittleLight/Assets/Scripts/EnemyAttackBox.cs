@@ -43,7 +43,7 @@ public class EnemyAttackBox : MonoBehaviour
     {
         if(oth.CompareTag("Player"))
         {
-            oth.GetComponent<PlayerHealth>().Damage(damage);
+            oth.GetComponent<PlayerLight>().LoseLight(damage);
         }
     }
 }
