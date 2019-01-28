@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public bool playerBullet = true;
     public float projSpeed = 10f;
     public float destroyTime = 2f;
     public int damage = 1;
@@ -31,10 +32,20 @@ public class Projectile : MonoBehaviour
     {
         GameObject oth = col.gameObject;
 
-        if(oth.CompareTag("Enemy"))
+        if(oth.CompareTag("Enemy") && playerBullet)
         {
-            Debug.Log("Dealing: " + damage);
             oth.GetComponent<EnemyHealth>().Damage(damage);
+        }
+
+        if (oth.CompareTag("Player") && !playerBullet)
+        {
+            oth.GetComponent<PlayerLight>().LoseLight(damage);
+            Destroy(gameObject);
+        }
+
+        if (oth.CompareTag("Fountain"))
+        {
+            oth.GetComponent<LightFountain>().Open(damage);
         }
         
         if (!oth.CompareTag("Player"))

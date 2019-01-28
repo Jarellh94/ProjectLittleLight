@@ -13,6 +13,10 @@ public class LightFountain : MonoBehaviour
 
     float spawnTimer;
 
+    bool isActive = false;
+    int hitNum = 2;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,23 +26,36 @@ public class LightFountain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (spawnTimer > 0)
-            spawnTimer -= Time.deltaTime;
-
-        if(spawnTimer <= 0)
+        if (isActive)
         {
-            SpawnLight();
-            spawnTimer = spawnFrequency;
+            if (spawnTimer > 0)
+                spawnTimer -= Time.deltaTime;
+
+            if (spawnTimer <= 0)
+            {
+                SpawnLight();
+                spawnTimer = spawnFrequency;
+            }
         }
     }
 
     void SpawnLight()
     {
-        float x = Random.Range(-spawnRange, spawnRange);
-        float z = Random.Range(-spawnRange, spawnRange);
+        float x = Random.Range(-spawnRange * spawnForce, spawnRange * spawnForce);
+        float z = Random.Range(-spawnRange * spawnForce, spawnRange * spawnForce);
         
         GameObject newLight = Instantiate(lightPrefab, spawnPoint.position, Quaternion.identity);
 
-        newLight.GetComponent<Rigidbody>().AddForce(x * spawnForce, spawnHeight * spawnForce, z * spawnForce);
+        newLight.GetComponent<Rigidbody>().AddForce(x, spawnHeight * spawnForce, z);
+    }
+
+    public void Open(int value)
+    {
+        hitNum -= value;
+
+        if(hitNum <= 0)
+        {
+            isActive = true;
+        }
     }
 }

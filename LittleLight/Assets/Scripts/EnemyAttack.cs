@@ -9,17 +9,15 @@ public class EnemyAttack : MonoBehaviour
     public ATTACKTYPE attackType = ATTACKTYPE.MELEE;
     public float attackRange;
     public float attackSpeed;
+    public int damage;
 
-    bool isAttacking;
-    float attackTimer = 0;
+    protected bool isAttacking;
+    protected float attackTimer = 0;
 
-    EnemyAttackBox attackBox;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(attackType == ATTACKTYPE.MELEE)
-            attackBox = GetComponentInChildren<EnemyAttackBox>();
     }
 
     // Update is called once per frame
@@ -29,10 +27,7 @@ public class EnemyAttack : MonoBehaviour
         {
             if (attackTimer == 0)
             {
-                if (attackType == ATTACKTYPE.MELEE)
-                    Attack();
-                else if (attackType == ATTACKTYPE.RANGE)
-                    Shoot();
+                Attack();
             }
         }
         
@@ -46,7 +41,7 @@ public class EnemyAttack : MonoBehaviour
         
     }
 
-    public float GetAttackRange()
+    public float GetRange()
     {
         return attackRange;
     }
@@ -61,13 +56,7 @@ public class EnemyAttack : MonoBehaviour
         isAttacking = false;
     }
 
-    void Attack()
-    {
-        attackTimer = attackSpeed;
-        attackBox.Attacking();
-    }
-
-    void Shoot()
+    public virtual void Attack()
     {
 
     }

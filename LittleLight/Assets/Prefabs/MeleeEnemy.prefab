@@ -104,7 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead1e57959ad5914ea042d8ce450cae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
   attackTime: 0.3
 --- !u!1 &8491801192271181118
 GameObject:
@@ -268,7 +267,7 @@ GameObject:
   - component: {fileID: 8491801192710212322}
   - component: {fileID: 8491801192710212326}
   - component: {fileID: 8491801192710212324}
-  - component: {fileID: 8491801192710212331}
+  - component: {fileID: 6713487751657822976}
   - component: {fileID: 8491801192710212325}
   - component: {fileID: 8491801192710212330}
   m_Layer: 0
@@ -380,7 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 8491801192710212325}
---- !u!114 &8491801192710212331
+--- !u!114 &6713487751657822976
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -389,12 +388,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8491801192710212323}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 592598a7b3080fc40aca168e5c90aa3b, type: 3}
+  m_Script: {fileID: 11500000, guid: 22d661e5567e6d64aa664b74510f44c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackType: 0
   attackRange: 1.5
   attackSpeed: 1.5
+  damage: 1
 --- !u!195 &8491801192710212325
 NavMeshAgent:
   m_ObjectHideFlags: 0

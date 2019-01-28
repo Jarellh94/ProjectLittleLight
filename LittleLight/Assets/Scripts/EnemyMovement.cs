@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    PointerScript pointerInfo;
     Transform player;
 
     EnemyAttack myAttack;
@@ -15,7 +14,6 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pointerInfo = FindObjectOfType<PointerScript>();
         myAttack = GetComponent<EnemyAttack>();
     }
 
@@ -26,9 +24,10 @@ public class EnemyMovement : MonoBehaviour
         {
             agent.SetDestination(player.position);
 
-            if (Vector3.Distance(transform.position, player.position) <= myAttack.GetAttackRange())
+            if (Vector3.Distance(transform.position, player.position) <= myAttack.GetRange())
             {
                 myAttack.StartAttack();
+                transform.LookAt(player);
             }
             else
             {

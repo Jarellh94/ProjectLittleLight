@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class EnemyAttackBox : MonoBehaviour
 {
-    public int damage;
     public float attackTime = 0.3f;
 
     float attackBoxTimer = 0;
     MeshRenderer mesh;
     BoxCollider coll;
+
+    int damage = 0;
 
     // Start is called before the first frame update
     void Start()
