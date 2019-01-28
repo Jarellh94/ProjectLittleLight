@@ -22,8 +22,16 @@ public class PlayerCollector : MonoBehaviour
     {
         if(oth.CompareTag("Light"))
         {
-            myLight.AddLight(oth.GetComponent<LightPickup>().GetLightValue());
-            Destroy(oth.gameObject);
+            oth.GetComponent<LightPickup>().StartPickup(transform);
+        }
+    }
+    
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.CompareTag("Light"))
+        {
+            myLight.AddLight(col.gameObject.GetComponent<LightPickup>().GetLightValue());
+            Destroy(col.gameObject);
         }
     }
 }

@@ -7,6 +7,9 @@ public class LightFountain : MonoBehaviour
     public GameObject lightPrefab;
     public int spawnRange;
     public float spawnFrequency;
+    public float spawnForce;
+    public float spawnHeight;
+    public Transform spawnPoint;
 
     float spawnTimer;
 
@@ -33,7 +36,9 @@ public class LightFountain : MonoBehaviour
     {
         float x = Random.Range(-spawnRange, spawnRange);
         float z = Random.Range(-spawnRange, spawnRange);
+        
+        GameObject newLight = Instantiate(lightPrefab, spawnPoint.position, Quaternion.identity);
 
-        Instantiate(lightPrefab, new Vector3(transform.position.x + x, 1, transform.position.z + z), Quaternion.identity);
+        newLight.GetComponent<Rigidbody>().AddForce(x * spawnForce, spawnHeight * spawnForce, z * spawnForce);
     }
 }

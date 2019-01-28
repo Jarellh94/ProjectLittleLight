@@ -18,7 +18,8 @@ public class EnemyAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        attackBox = GetComponentInChildren<EnemyAttackBox>();
+        if(attackType == ATTACKTYPE.MELEE)
+            attackBox = GetComponentInChildren<EnemyAttackBox>();
     }
 
     // Update is called once per frame
