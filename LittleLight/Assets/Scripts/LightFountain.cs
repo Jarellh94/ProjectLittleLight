@@ -10,6 +10,7 @@ public class LightFountain : MonoBehaviour
     public float spawnForce;
     public float spawnHeight;
     public Transform spawnPoint;
+    public Material lightMat;
 
     float spawnTimer;
 
@@ -56,6 +57,8 @@ public class LightFountain : MonoBehaviour
         if(hitNum <= 0)
         {
             isActive = true;
+            GetComponent<MeshRenderer>().material = lightMat;
+            GetComponent<Light>().enabled = true;
         }
     }
 }
