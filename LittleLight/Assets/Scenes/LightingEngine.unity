@@ -1363,13 +1363,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7618193023266746064, guid: bdb7b3f56c20f2748b018fd4a64a69ad,
-        type: 3}
-      propertyPath: m_StoppingDistance
-      value: 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 360990183735373733, guid: bdb7b3f56c20f2748b018fd4a64a69ad, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdb7b3f56c20f2748b018fd4a64a69ad, type: 3}
 --- !u!1001 &8491801192373540563
 PrefabInstance:
@@ -1437,26 +1431,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8491801192710212325, guid: 9b32bee74be6c7143bc8162d7215fb6a,
-        type: 3}
-      propertyPath: m_StoppingDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8491801192710212325, guid: 9b32bee74be6c7143bc8162d7215fb6a,
-        type: 3}
-      propertyPath: m_Acceleration
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8491801192710212325, guid: 9b32bee74be6c7143bc8162d7215fb6a,
-        type: 3}
-      propertyPath: m_Speed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6713487751657822976, guid: 9b32bee74be6c7143bc8162d7215fb6a,
-        type: 3}
-      propertyPath: attackRange
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b32bee74be6c7143bc8162d7215fb6a, type: 3}

@@ -7,6 +7,7 @@ public class LightFountain : MonoBehaviour
     public GameObject lightPrefab;
     public int spawnRange;
     public float spawnFrequency;
+    public int maxSpawn;
     public float spawnForce;
     public float spawnHeight;
     public Transform spawnPoint;
@@ -15,7 +16,7 @@ public class LightFountain : MonoBehaviour
     float spawnTimer;
 
     bool isActive = false;
-    int hitNum = 2;
+    int hitNum = 1;
 
 
     // Start is called before the first frame update
@@ -42,12 +43,15 @@ public class LightFountain : MonoBehaviour
 
     void SpawnLight()
     {
-        float x = Random.Range(-spawnRange * spawnForce, spawnRange * spawnForce);
-        float z = Random.Range(-spawnRange * spawnForce, spawnRange * spawnForce);
-        
-        GameObject newLight = Instantiate(lightPrefab, spawnPoint.position, Quaternion.identity);
+        if (transform.childCount < maxSpawn)
+        {
+            float x = Random.Range(-spawnRange * spawnForce, spawnRange * spawnForce);
+            float z = Random.Range(-spawnRange * spawnForce, spawnRange * spawnForce);
 
-        newLight.GetComponent<Rigidbody>().AddForce(x, spawnHeight * spawnForce, z);
+            GameObject newLight = Instantiate(lightPrefab, spawnPoint.position, Quaternion.identity, transform);
+
+            newLight.GetComponent<Rigidbody>().AddForce(x, spawnHeight * spawnForce, z);
+        }
     }
 
     public void Open(int value)

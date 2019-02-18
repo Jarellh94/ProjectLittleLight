@@ -40,6 +40,6 @@ public class Shooter : MonoBehaviour
         GameObject newProj = Instantiate(proj, firePoint.position, Quaternion.identity);
         shootCounter = 0;
 
-        newProj.GetComponent<Projectile>().Fired(damage, transform.forward);
+        newProj.GetComponent<Projectile>().Fired(damage, transform.forward, transform);
     }
 }

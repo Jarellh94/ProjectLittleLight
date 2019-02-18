@@ -33,11 +33,12 @@ public class EnemyAttackBox : MonoBehaviour
         }
     }
 
-    public void Attacking()
+    public void Attacking(int dam)
     {
         attackBoxTimer = attackTime;
         mesh.enabled = true;
         coll.enabled = true;
+        damage = dam;
     }
 
     void OnTriggerEnter(Collider oth)

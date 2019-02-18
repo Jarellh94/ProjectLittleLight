@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5f;
+    public float walkSpeed = 5f;
+    public float sprintSpeed = 10f;
+
+    float speed;
 
     PointerScript pointerInfo;
 
@@ -12,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         pointerInfo = FindObjectOfType<PointerScript>();
+        speed = walkSpeed;
     }
 
     // Update is called once per frame
@@ -19,6 +23,12 @@ public class PlayerMovement : MonoBehaviour
     {
         float moveHor = Input.GetAxis("Horizontal");
         float moveVer = Input.GetAxis("Vertical");
+
+        if (Input.GetKeyDown(KeyCode.LeftShift)) //Will probably need to change this to regular input
+            speed = sprintSpeed;
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+            speed = walkSpeed;
 
         Move(moveHor, moveVer);
         Turn();
@@ -35,8 +45,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Move(float horizontal, float vertical)
     {
-        transform.Translate(new Vector3(1, 0, 0) * speed * Time.deltaTime * horizontal, Space.World);
-        transform.Translate(new Vector3(0, 0, 1) * speed * Time.deltaTime * vertical, Space.World);
+        Vector3 moveDir = new Vector3(horizontal, 0, vertical) * speed;
+        transform.Translate(Vector3.ClampMagnitude(moveDir, speed) * Time.deltaTime, Space.World);
 
         /*
         if (horizontal > 0)

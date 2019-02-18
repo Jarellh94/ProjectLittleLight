@@ -10,6 +10,8 @@ public class Projectile : MonoBehaviour
     public int damage = 1;
     Vector3 direction;
 
+    Transform shooterTransform;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,24 +30,43 @@ public class Projectile : MonoBehaviour
         direction = newDirection;
     }
 
+    //Alternate function for when fired by player
+    public void Fired(int newDamage, Vector3 newDirection, Transform player)
+    {
+        damage = newDamage;
+        direction = newDirection;
+        shooterTransform = player;
+    }
+
     void OnCollisionEnter(Collision col)
     {
         GameObject oth = col.gameObject;
 
-        if(oth.CompareTag("Enemy") && playerBullet)
+        if (playerBullet)
         {
-            oth.GetComponent<EnemyHealth>().Damage(damage);
+            if (oth.CompareTag("Enemy"))
+            {
+                oth.GetComponent<EnemyHealth>().Damage(damage);
+
+                //Making enemy attack player when attacked.
+                oth.GetComponent<EnemyMovement>().SetTarget(shooterTransform);
+            }
+
+            if (oth.CompareTag("Fountain"))
+            {
+                oth.GetComponent<LightFountain>().Open(damage);
+            }
+
+            if(oth.CompareTag("Trigger"))
+            {
+                oth.GetComponent<TriggerScript>().Trigger();
+            }
         }
 
         if (oth.CompareTag("Player") && !playerBullet)
         {
             oth.GetComponent<PlayerLight>().LoseLight(damage);
             Destroy(gameObject);
-        }
-
-        if (oth.CompareTag("Fountain"))
-        {
-            oth.GetComponent<LightFountain>().Open(damage);
         }
         
         if (!oth.CompareTag("Player"))

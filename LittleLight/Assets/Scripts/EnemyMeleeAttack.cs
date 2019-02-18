@@ -14,6 +14,6 @@ public class EnemyMeleeAttack : EnemyAttack
     public override void Attack()
     {
         attackTimer = attackSpeed;
-        attackBox.Attacking();
+        attackBox.Attacking(damage);
     }
 }
