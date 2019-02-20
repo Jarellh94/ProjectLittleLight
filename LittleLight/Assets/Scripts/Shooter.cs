@@ -11,13 +11,13 @@ public class Shooter : MonoBehaviour
 
     float shootCounter = 0;
 
-    private Camera cam;
+    //private Camera cam;
     
 
     // Start is called before the first frame update
     void Awake()
     {
-        cam = Camera.main;
+        //cam = Camera.main;
     }
 
     // Update is called once per frame
