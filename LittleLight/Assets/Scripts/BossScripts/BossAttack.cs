@@ -16,6 +16,7 @@ public class BossAttack : MonoBehaviour
     protected float phaseTimer = 0;
 
     bool isAttacking = false;
+    bool isAnimating = false;
     
     int currAttack = 1; //1 - Primary, 2 - Strong, 3 - Special then loop back
 
@@ -75,6 +76,21 @@ public class BossAttack : MonoBehaviour
     public bool GetIsAttacking()
     {
         return isAttacking;
+    }
+
+    public bool GetIsAnimating()
+    {
+        return isAnimating;
+    }
+
+    public void StartAnimating()
+    {
+        isAnimating = true;
+    }
+
+    public void StopAnimating()
+    {
+        isAnimating = false;
     }
 
     public virtual void PrimaryAttack()

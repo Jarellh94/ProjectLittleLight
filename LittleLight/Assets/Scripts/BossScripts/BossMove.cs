@@ -18,19 +18,29 @@ public class BossMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (player)
         {
             agent.SetDestination(player.position);
 
-            if (Vector3.Distance(transform.position, player.position) <= myAttack.attackRange && !myAttack.GetIsAttacking())
+            if (Vector3.Distance(transform.position, player.position) <= myAttack.attackRange)
             {
-                myAttack.StartAttack();
-                Vector3 playerDirection = new Vector3(player.position.x, transform.position.y, player.position.z);
-                transform.LookAt(playerDirection);
+                if (!myAttack.GetIsAttacking())
+                    myAttack.StartAttack();
+
+                if (!myAttack.GetIsAnimating())
+                {
+                    //Vector3 playerDirection = new Vector3(player.position.x, transform.position.y, player.position.z);
+                    //transform.LookAt(playerDirection);
+
+                    Vector3 playerDirection = player.position - transform.position;
+                    Quaternion look = Quaternion.LookRotation(playerDirection);
+
+                    transform.rotation = Quaternion.Lerp(transform.rotation, look, 5 * Time.deltaTime);
+                }
             }
-            else if(myAttack.GetIsAttacking())
+            else
             {
                 myAttack.StopAttack();
             }

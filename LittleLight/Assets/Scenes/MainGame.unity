@@ -1602,7 +1602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2052864899}
-  fightStarted: 0
+  fightStarted: 1
 --- !u!114 &1415933582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1615,9 +1615,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 969ef108412bb574ea6764677787ac6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackInterval: 10
+  attackInterval: 2
   attackRange: 7
   phaseLength: 100
+  attackTimer: 0
+  phaseTimer: 0
 --- !u!95 &1415933583
 Animator:
   serializedVersion: 3
