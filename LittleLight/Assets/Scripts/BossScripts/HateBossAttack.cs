@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class HateBossAttack : BossAttack
 {
+    public List<BossAttackBox> attackBoxes;
+    public float knockback;
+
     Animator anim;
 
     bool rightPunch = true;
@@ -12,6 +15,11 @@ public class HateBossAttack : BossAttack
     void Start()
     {
         anim = GetComponent<Animator>();
+
+        foreach(BossAttackBox box in attackBoxes)
+        {
+            box.SetKnockback(knockback);
+        }
     }
 
     public override void PrimaryAttack()
